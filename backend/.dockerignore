@@ -1,0 +1,14 @@
+__pycache__
+.flake8
+.gitignore
+.git
+.env
+
+#docs
+usageManuals
+*.md
+
+# tests
+tests
+conftest.py
+pytest.ini

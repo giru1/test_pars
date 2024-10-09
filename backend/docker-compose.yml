@@ -1,0 +1,53 @@
+services:
+  app:
+    container_name: film-module
+    ports:
+      - ${CONTRACTOR_MODULE_PORT}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    stop_grace_period: 10s 
+    environment:
+      DB_HOST: contractor-module-db
+      DB_PORT: 5432
+      DB_USER: ${CONTRACTOR_MODULE_DB_USER}
+      DB_PASS: ${CONTRACTOR_MODULE_DB_PWD}
+      DB_NAME: ${CONTRACTOR_MODULE_DB_NAME}
+
+      MODE: ${MODE}
+      LOG_LEVEL: ${LOG_LEVEL}
+    volumes:
+      - back-end_film-module-migration-vol:/app/migrations/versions
+    networks:
+      - default-net
+      - db-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/docker/app.sh"]
+
+  postgres:
+    container_name: contractor-module-db
+    image: postgres:${POSTGRES_VERSION}
+    ports:
+      - "5432"
+    restart: always
+    stop_grace_period: 10s 
+    volumes:
+      - back-end_contractor-module-db-vol:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${CONTRACTOR_MODULE_DB_NAME}
+      POSTGRES_USER: ${CONTRACTOR_MODULE_DB_USER}
+      POSTGRES_PASSWORD: ${CONTRACTOR_MODULE_DB_PWD}
+    networks:
+      - db-network
+
+networks:
+  default-net:
+    external: true
+  db-network:
+
+volumes:
+  back-end_contractor-module-db-vol:
+    external: true
+  back-end_contractor-module-migration-vol:
