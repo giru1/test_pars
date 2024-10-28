@@ -1,9 +1,9 @@
 from typing import Optional
 
-from backend.film.models import Film
-from backend.film.schemas import FilmSchemasCreate, FilmSchemasResponse
+from .models import Film
+from .schemas import FilmSchemasCreate, FilmSchemasResponse
 
-from backend.dao.base import BaseDAO
+from dao.base import BaseDAO
 
 
 class FilmDAO(BaseDAO):

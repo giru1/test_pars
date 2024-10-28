@@ -32,7 +32,8 @@ class Film(Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
 
     name: Mapped[str] = mapped_column(nullable=True)
+    image_path: Mapped[str] = mapped_column(nullable=True)
     producer: Mapped[str] = mapped_column(nullable=True)
-    year: Mapped[Date] = mapped_column(nullable=True)
+    year: Mapped[int] = mapped_column(nullable=True)
     genre: Mapped[str] = mapped_column(nullable=True)
     rating: Mapped[float] = mapped_column(nullable=True)

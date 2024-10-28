@@ -17,7 +17,6 @@ sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
 from film.models import Film
 from database import DATABASE_URL, Base
-from event.models import Event
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

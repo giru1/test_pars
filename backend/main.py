@@ -5,7 +5,7 @@ import json
 from fastapi import FastAPI, Request, Response
 from loguru import logger
 from film.router import router as router_films
-from event.base_consumer import Consumer
+
 from starlette.middleware.cors import CORSMiddleware
 from config import settings
 
@@ -13,7 +13,7 @@ from config import settings
 class App(FastAPI):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.consumer = Consumer()
+
 
 
 app = App()
@@ -94,8 +94,3 @@ async def add_process_time_header(request: Request, call_next):
 
     return response
 
-@app.on_event("startup")
-async def startup():
-    loop = asyncio.get_running_loop()
-    task = loop.create_task(app.consumer.consume(loop))
-    await task

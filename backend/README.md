@@ -1,46 +1,29 @@
-# <div id="main">EfiritPro Retail ContractorModule - Модуль контрагентов</div>
+# EfiritPro Retail ContractorModule
 
-## <div id="content">Содержание</div>
+## Описание
+Модуль, который парсит сайт с фильмами, обрабатывает данные и сохраняет их в базу данных.
 
-- [ContractorModule](#main)
-    - [Содержание](#content)
-    - [Предназначение](#target)
-    - [Установка](#install)
-    - [Использование](#usage)
-
-## <div id="target">Предназначение</div>
-
-Модуль ответственен за создание, удаление, изменение контрагентов клиента.
-
-## <div id="install">Установка</div>
+## Установка
 
 ### Предварительные требования
+- Docker версии ^24.0.0
+- Docker Compose
 
-- docker версии ^24.0.0
+### Клонирование репозитория
 
-### Процесс установки
+### Запуск приложения
+1. Соберите образ:
+   ```bash
+   docker-compose build
+   ```
+2. Запустите приложение:
+   ```bash
+   docker-compose up
+   ```
 
-1. Создать образ модуля
+### Использование
+- Перейдите по адресу `http://localhost:8000` для доступа к приложению.
+- Нажмите кнопку "Загрузить фильмы", чтобы спарсить и сохранить фильмы в базе данных.
 
-```bash
-docker build -t efirit-contractor-module:0.1 .
-```
-
-2. Применить этот образ в проекте EfiritPro Retail Backend
-
-## <div id="usage">Использование</div>
-
-### Внешнее API
-
-apiHost - http адрес API сервера
-
-- [Contractor API](usageManuals/contractor_api.md)
-
-### RabbitMQ
-
-#### Прослушиваемые очереди и их объекты (см. Miro)
-
-- contractor/eventAck => RabbitEvent
-- contractor/removeOrganization => OrganizationEvent
-
-#### Отправляемые очереди и их объекты (см. Miro)
+## Тестирование
+Для запуска тестов выполните:

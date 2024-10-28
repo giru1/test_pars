@@ -35,6 +35,8 @@ class Settings(BaseSettings):
     DB_NAME: str
     URL: str
 
+    ORIGINS: str
+
     class Config:
         env_file = ".env"
         from_attributes = True
